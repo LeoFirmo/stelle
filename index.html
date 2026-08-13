@@ -59,7 +59,7 @@
     <!-- Main Content -->
     <main class="flex-grow pt-36 pb-12">
         <!-- Hero Section -->
-        <section class="max-w-4xl mx-auto px-4 text-center mb-16">
+        <section class="max-w-4xl mx-auto px-4 text-center mb-12">
             
             <h2 class="font-serif text-4xl md:text-5xl mb-6 text-stelle-brown">Aquele gostinho de casa.</h2>
             <p class="text-lg md:text-xl opacity-90 leading-relaxed font-light">
@@ -69,6 +69,23 @@
             <span style="margin-top: 10px;" class="inline-block py-1.5 px-4 rounded-full bg-stelle-yellow/20 text-stelle-brown font-semibold text-sm mb-5 border border-stelle-yellow/40 shadow-sm">
                 Os melhores bolos artesanais de Ji-Paraná
             </span>
+        </section>
+
+        <!-- Product Size Banner -->
+        <section class="max-w-3xl mx-auto px-4 mb-14">
+            <div class="bg-white/60 border border-stelle-brown/20 rounded-2xl p-5 md:p-6 flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm text-center sm:text-left relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-stelle-yellow"></div>
+                <div class="bg-stelle-yellow/20 p-3 rounded-full flex-shrink-0 text-stelle-brown mt-1">
+                    <i class="fa-solid fa-ruler-combined text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl font-bold mb-2 text-stelle-brown">Tamanho Padrão Generoso</h4>
+                    <p class="text-sm md:text-base opacity-80 leading-relaxed">
+                        Nossos bolos são assados em formas de <strong>25cm de largura por 9cm de altura</strong>. 
+                        Eles pesam aproximadamente de <strong>1,5kg a 1,8kg</strong>. Bastante bolo para compartilhar com quem você ama!
+                    </p>
+                </div>
+            </div>
         </section>
 
         <!-- Products Section -->
@@ -111,11 +128,6 @@
         
         <div class="flex-grow overflow-y-auto p-6 cart-scroll" id="cart-items">
             <!-- Cart items will be injected here -->
-            <div class="h-full flex flex-col items-center justify-center text-stelle-brown/60 text-center opacity-80">
-                <i class="fa-solid fa-cookie-bite text-4xl mb-4"></i>
-                <p>Seu carrinho está vazio.</p>
-                <p class="text-sm">Que tal adoçar o seu dia?</p>
-            </div>
         </div>
 
         <div class="p-6 border-t border-stelle-brown/20 bg-white/80">
@@ -133,7 +145,7 @@
     <!-- Cart Overlay Backdrop -->
     <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden transition-opacity opacity-0"></div>
 
-    <!-- Mini Cart Flutuante (Nova UX) -->
+    <!-- Mini Cart Flutuante -->
     <div id="floating-cart" class="fixed bottom-24 right-4 sm:right-6 z-30 bg-stelle-brown text-stelle-bg px-5 py-3 rounded-2xl shadow-[0_8px_30px_rgba(140,90,62,0.3)] transform transition-all duration-500 translate-y-[150%] opacity-0 flex items-center gap-4 cursor-pointer hover:bg-[#7a4e36]" onclick="toggleCart()">
         <div class="relative">
             <i class="fa-solid fa-basket-shopping text-2xl text-stelle-yellow"></i>
@@ -176,12 +188,13 @@
         // Set current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Product Data
+        // Product Data Atualizado
         const products = [
-            { id: 1, name: 'Bolo de Cenoura', price: 60.00, desc: 'Massa fofinha com cobertura generosa de brigadeiro.', images: ['img/cenoura.jpeg'], currentImageIndex: 0 },
-            { id: 2, name: 'Bolo de Brigadeiro', price: 70.00, desc: 'Para os apaixonados por cacau, massa e cobertura ricas.', images: ['img/brigadeiro.jpeg'], currentImageIndex: 0 },
-            { id: 3, name: 'Chocolate com Granulado', price: 70.00, desc: 'Clássico bolo de chocolate com muito granulado.', images: ['img/chocolate-com-granulado.jpeg', 'img/chocolate-com-granulado-2.jpeg'], currentImageIndex: 0 },
-            { id: 4, name: 'Chocolate Ralado', price: 75.00, desc: 'Delicioso bolo com raspas de chocolate ao leite.', images: ['img/chocolate-ralado.jpeg'], currentImageIndex: 0 }
+            { id: 1, name: 'Cenoura com Chocolate', price: 65.00, desc: 'Massa fofinha de cenoura com uma cobertura irresistível de chocolate.', images: ['img/cenoura_com_chocolate.png'], currentImageIndex: 0 },
+            { id: 2, name: 'Chocolate com Brigadeiro', price: 65.00, desc: 'Bolo rico de chocolate coberto com nosso delicioso brigadeiro artesanal.', images: ['img/chocolate_com_brigadeiro.png'], currentImageIndex: 0 },
+            { id: 3, name: 'Milho com Requeijão e Goiabada', price: 75.00, desc: 'A combinação perfeita do bolo de milho com o toque especial do requeijão e goiabada.', images: ['img/milho_com_requeijao_e_goiabada.png'], currentImageIndex: 0 },
+            { id: 4, name: 'Fubá com Erva Doce', price: 50.00, desc: 'O clássico com gostinho de casa de vó, super macio e aromático.', images: ['img/fuba_com_erva_doce.png'], currentImageIndex: 0 },
+            { id: 5, name: 'Prestígio', price: 70.00, desc: 'Massa de chocolate incrível com uma cobertura cremosa de beijinho de coco.', images: ['img/prestigio.png'], currentImageIndex: 0 }
         ];
 
         let cart = [];
@@ -205,7 +218,6 @@
                 const hasMultipleImages = product.images.length > 1;
                 let carouselControls = '';
                 
-                // Se tiver mais de uma foto, adiciona as setas e os pontinhos
                 if (hasMultipleImages) {
                     carouselControls = `
                         <button onclick="prevImage(${product.id})" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-stelle-brown rounded-full w-8 h-8 flex items-center justify-center shadow-md transition-colors z-10">
@@ -222,18 +234,23 @@
 
                 return `
                 <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-stelle-brown/10 flex flex-col">
-                    <div class="relative h-56 w-full bg-stelle-bg flex items-center justify-center overflow-hidden group">
-                        <img id="product-img-${product.id}" src="${product.images[product.currentImageIndex]}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="relative h-56 w-full bg-stelle-bg/50 flex items-center justify-center overflow-hidden group p-4">
+                        <img id="product-img-${product.id}" src="${product.images[product.currentImageIndex]}" alt="${product.name}" class="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105">
                         ${carouselControls}
                         <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h4 class="text-xl font-bold mb-2 font-serif text-stelle-brown">${product.name}</h4>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-stelle-bg border border-stelle-brown/20 text-stelle-brown text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-weight-hanging text-[10px]"></i> Aprox. 1,5kg a 1,8kg
+                            </span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 font-serif text-stelle-brown leading-tight">${product.name}</h4>
                         <p class="text-sm opacity-75 mb-4 flex-grow text-stelle-brown">${product.desc}</p>
                         <div class="flex items-center justify-between mt-auto pt-4 border-t border-stelle-brown/10">
-                            <span class="text-xl font-semibold text-stelle-brown">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
+                            <span class="text-xl font-bold text-stelle-brown">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
                             <button onclick="addToCart(${product.id})" class="bg-stelle-brown text-stelle-bg px-4 py-2 rounded-lg hover:bg-stelle-yellow hover:text-stelle-brown transition-colors font-medium text-sm flex items-center gap-2 shadow-sm">
-                                <i class="fa-solid fa-plus"></i> Adicionar
+                                <i class="fa-solid fa-plus"></i> Add
                             </button>
                         </div>
                     </div>
@@ -242,7 +259,6 @@
             }).join('');
         }
 
-        // Funções do Carrossel de Imagens
         function prevImage(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
@@ -266,7 +282,6 @@
                 imgEl.src = product.images[product.currentImageIndex];
             }
             
-            // Atualiza os pontinhos (dots) de navegação
             product.images.forEach((_, i) => {
                 const dot = document.getElementById(`dot-${productId}-${i}`);
                 if (dot) {
@@ -275,7 +290,6 @@
             });
         }
 
-        // Função de Animação do Carrinho Flutuante (Substitui o Toast antigo)
         function animateFloatingCart() {
             const floatingCart = document.getElementById('floating-cart');
             floatingCart.classList.add('scale-110');
@@ -297,7 +311,7 @@
             
             saveCart();
             updateCartUI();
-            animateFloatingCart(); // Chama a nova animação
+            animateFloatingCart();
         }
 
         function removeFromCart(productId) {
@@ -324,27 +338,22 @@
             const cartTotal = document.getElementById('cart-total');
             const cartCount = document.getElementById('cart-count');
             
-            // Novos elementos do Carrinho Flutuante
             const floatingCart = document.getElementById('floating-cart');
             const floatingCartCount = document.getElementById('floating-cart-count');
             const floatingCartTotal = document.getElementById('floating-cart-total');
 
-            // Update badge
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             cartCount.textContent = totalItems;
             floatingCartCount.textContent = totalItems;
             
             if (totalItems === 0) {
                 cartCount.classList.add('hidden');
-                // Esconde o carrinho flutuante se estiver vazio
                 floatingCart.classList.add('translate-y-[150%]', 'opacity-0');
             } else {
                 cartCount.classList.remove('hidden');
-                // Mostra o carrinho flutuante
                 floatingCart.classList.remove('translate-y-[150%]', 'opacity-0');
             }
 
-            // Update sidebar content
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `
                     <div class="h-full flex flex-col items-center justify-center text-stelle-brown/60 text-center opacity-80 mt-10">
@@ -394,7 +403,7 @@
                 sidebar.classList.remove('translate-x-full');
                 overlay.classList.remove('hidden');
                 setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                document.body.style.overflow = 'hidden'; 
             } else {
                 sidebar.classList.add('translate-x-full');
                 overlay.classList.add('opacity-0');
